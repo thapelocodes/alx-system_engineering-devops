@@ -16,3 +16,4 @@
 * **Unique** File 13: Takes a list of words as input and prints only words that appear exactly once.
 * **Find That Word** File 14: Displays lines containing the pattern “root” from the file passwd in directory etc.
 * **Count That Word** File 15: Displays the number of lines that contain the pattern “bin” in the file passwd in directory etc.
+* **What's Next?** File 16: Displays lines containing the pattern “root” and 3 lines after them in the file /etc/passwd.
