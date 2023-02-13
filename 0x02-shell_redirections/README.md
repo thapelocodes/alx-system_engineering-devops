@@ -13,3 +13,4 @@
 * **No More Javascript** File 10: Deletes all the regular javascript files in the current directories exluding the directories.
 * **Directories** File 11: Counts the number of directories and sub-directories in the current directory.
 * **Newest FIles** File 12: Dislplays the 10 newest files in the current directory.
+* **Unique** File 13: Takes a list of words as input and prints only words that appear exactly once.
