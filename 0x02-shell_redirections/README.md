@@ -17,3 +17,4 @@
 * **Find That Word** File 14: Displays lines containing the pattern “root” from the file passwd in directory etc.
 * **Count That Word** File 15: Displays the number of lines that contain the pattern “bin” in the file passwd in directory etc.
 * **What's Next?** File 16: Displays lines containing the pattern “root” and 3 lines after them in the file /etc/passwd.
+* **Hide This Word** File 17: Displays all the lines in the file passwd that do not contain the pattern "bin".
