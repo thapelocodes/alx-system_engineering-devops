@@ -20,3 +20,4 @@
 * **Hide This Word** File 17: Displays all the lines in the file passwd that do not contain the pattern "bin".
 * **Letters Only** File 18: Displays all the lines of the file /etc/ssh/sshd_config starting with a letter.
 * **AZ** File 19: Replaces all characters A and c from input to Z and e respectively.
+* **Hiago** File 20: Renoves all letters c and C from input.
