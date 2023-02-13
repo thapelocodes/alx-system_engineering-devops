@@ -11,3 +11,4 @@
 * **CWD State** File 8: Writes the result of ls -la  to the file list content file in the working directory.
 * **Duplicate Last Line** File 9: Duplicates the last line of the file iacta.
 * **No More Javascript** File 10: Deletes all the regular javascript files in the current directories exluding the directories.
+* **Directories** File 11: Counts the number of directories and sub-directories in the current directory.
