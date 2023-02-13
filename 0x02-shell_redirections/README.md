@@ -15,3 +15,4 @@
 * **Newest FIles** File 12: Dislplays the 10 newest files in the current directory.
 * **Unique** File 13: Takes a list of words as input and prints only words that appear exactly once.
 * **Find That Word** File 14: Displays lines containing the pattern “root” from the file passwd in directory etc.
+* **Count That Word** File 15: Displays the number of lines that contain the pattern “bin” in the file passwd in directory etc.
