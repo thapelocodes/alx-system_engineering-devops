@@ -7,4 +7,5 @@
 * **Last Lines** File 4: Displays the last 10 laines of the passwd file in directory etc.
 * **First Lines** File 5: Displays the first 10 lines of the file passwd in directory etc.
 * **Third Line** File 6: Dislays the third line of the file iacta.
-* **File** File 7: creates a file named \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+* **File** File 7: Creates a file named \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+* **CWD State** File 8: Writes the result of ls -la  to the file list content file in the working directory. 
