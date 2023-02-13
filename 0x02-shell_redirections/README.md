@@ -9,4 +9,5 @@
 * **Third Line** File 6: Dislays the third line of the file iacta.
 * **File** File 7: Creates a file named \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
 * **CWD State** File 8: Writes the result of ls -la  to the file list content file in the working directory.
-* **Duplicate Last Line** File 9: Duplicates the last line of the file iacta
+* **Duplicate Last Line** File 9: Duplicates the last line of the file iacta.
+* **No More Javascript** File 10: Deletes all the regular javascript files in the current directories exluding the directories.
