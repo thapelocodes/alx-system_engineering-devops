@@ -25,3 +25,4 @@
 * **Users And Homes** File 22: Displays a;; users and their home directories, sorted by users.
 * **Empty Casks** File 23: Finds all empty files and directories in the current directory and all sub-directories.
 * **101-gifs** File 24: Lists all files with .gif extension.
+* **102-acrostic** File 25: Decodes acrostics that use the first letter of each line.
