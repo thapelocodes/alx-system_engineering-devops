@@ -6,3 +6,4 @@
 * **3-paths** File 3: creates a script that counts the number of directories in the PATH.
 * **4-global_variables** File 4: creates a script that lists environment variables.
 * **5-local_variables** File 5: creates a script that lists all local variables and environment variables, and functions.
+* **6-create_local_variable** FIle 6: creates a script that creates a new local variable.
