@@ -3,7 +3,7 @@
 Queries Reddit API and returns the number of total subscribers for a given
 subreddit
 """
-from requests import get
+import requests
 
 
 def number_of_subscribers(subreddit):
@@ -13,7 +13,7 @@ def number_of_subscribers(subreddit):
     """
     url = 'http://www.reddit.com/r/{}/about.json'.format(subreddit)
     headers = {'User-Agent': 'Python/1.0(Holberton School 0x16 task 0)'}
-    response = get(url, headers=headers)
+    response = requests.get(url, headers=headers)
     if (not response.ok):
         return 0
     total = response.json().get('data').get('subscribers')
