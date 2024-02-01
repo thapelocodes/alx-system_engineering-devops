@@ -1,44 +1,28 @@
 #!/usr/bin/env bash
-# installs and configure HAProxy
-sudo apt install --no-install-recommends software-properties-common -y
-sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
-sudo apt install haproxy=2.4.\* -y
-sudo apt update && sudo apt upgrade -y
+# Create a script to install and configure HAProxy on lb-01 server
+# Configure HAProxy to send traffic to web-01 and web-02 servers
+# Distribute requests using a roundrobin algorithm
+# Make sure that HAProxy can be managed via an init script
+# Install and configure HAproxy on my lb-01 server.
+sudo apt-get -y update
+apt-get -y install haproxy
 
-sudo chown -R "$USER":"$USER" /etc/default/haproxy
-sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
-
-echo "ENABLED=1" >> /etc/default/haproxy
-
-config=\
+# edit config file
+server_config=\
 "
-global
-	log /dev/log	local0
-	log /dev/log	local1 notice
-	chroot /var/lib/haproxy
-	stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
-	stats timeout 30s
-	user haproxy
-	group haproxy
-	daemon
-defaults
-	log	global
-	mode	http
-	option	httplog
-	option	dontlognull
-        timeout connect 5000
-        timeout client  50000
-        timeout server  50000
-backend myservers
-	balance roundrobin
-	server 273454-web-01 18.206.206.85 check
-	server 273454-web-02 18.210.16.108 check
-frontend myfrontend
-	bind :80
-	mode http
-	default_backend myservers
+frontend  thapelo-frontend
+        bind *:80
+        mode http
+        default_backend thapelo-backend
+backend thapelo-backend
+        balance roundrobin
+        server 273454-web-01 18.206.206.85:80 check
+        server 273454-web-02 18.210.16.108:80 check
 "
+echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
-echo "$config" > /etc/haproxy/haproxy.cfg
+# enable haproxy to be started by init script
+
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 sudo service haproxy restart
