@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install and configure HAProxy
+# installs and configure HAProxy
 sudo apt install --no-install-recommends software-properties-common -y
 sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
 sudo apt install haproxy=2.4.\* -y
@@ -31,8 +31,8 @@ defaults
         timeout server  50000
 backend myservers
 	balance roundrobin
-	server 273454-web-01 54.144.145.159 check
-	server 273454-web-02 52.87.154.23 check
+	server 273454-web-01 18.206.206.85 check
+	server 273454-web-02 18.210.16.108 check
 frontend myfrontend
 	bind :80
 	mode http

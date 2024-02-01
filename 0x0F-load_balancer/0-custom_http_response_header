@@ -29,7 +29,7 @@ config=\
         }
         
         if (\$request_filename ~ redirect_me){
-            rewrite ^\/redirect_me https:\/\/github.com\/tm-moumakoe permanent;
+            rewrite ^\/redirect_me https:\/\/github.com\/thapelocodes permanent;
         }
 }"
 
