@@ -1,43 +1,54 @@
 global
-    log /dev/log local0
-    log /dev/log local1 notice
-    chroot /var/lib/haproxy
-    stats socket /run/haproxy/admin.sock mode 660 level admin
-    stats timeout 30s
-    user haproxy
-    group haproxy
-    daemon
+        log /dev/log    local0
+        log /dev/log    local1 notice
+        chroot /var/lib/haproxy
+        stats socket /run/haproxy/admin.sock mode 660 level admin
+        stats timeout 30s
+        user haproxy
+        group haproxy
+        daemon
 
-    maxconn 2048
-    tune.ssl.default-dh-param 2048
-    ca-base /etc/ssl/certs
-    crt-base /etc/ssl/private
-    ssl-default-bind-ciphers <your_ssl_ciphers_here>
-    ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
-    ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+        # Default SSL material locations
+        ca-base /etc/ssl/certs
+        crt-base /etc/ssl/private
+
+        # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
 defaults
-    log global
-    mode http
-    option httplog
-    option dontlognull
-    timeout connect 5000
-    timeout client 50000
-    timeout server 50000
-    option forwardfor
-    option http-server-close
+        log     global
+        mode    http
+        option  httplog
+        option  dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+        errorfile 400 /etc/haproxy/errors/400.http
+        errorfile 403 /etc/haproxy/errors/403.http
+        errorfile 408 /etc/haproxy/errors/408.http
+        errorfile 500 /etc/haproxy/errors/500.http
+        errorfile 502 /etc/haproxy/errors/502.http
+        errorfile 503 /etc/haproxy/errors/503.http
+        errorfile 504 /etc/haproxy/errors/504.http
 
-frontend annacletter_front_end
-    bind *:80
-    bind *:443 ssl crt /etc/haproxy/certs/www.annacletter.tech.pem
-    http-request redirect scheme https unless { ssl_fc }
-    http-request set-header X-Forwarded-Proto https
-    default_backend besthor_back_end
+frontend  thapelo-frontend
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/thapelo.tech.pem
+        redirect scheme https if !{ ssl_fc }
+        stats uri /haproxy?stats
+        default_backend thapelo-backend
 
-backend Annacletter_back_end
-    balance roundrobin
-    server 176572-web-01 100.25.10.158:80 check
-    server 176572-web-02 34.207.121.139:80 check
+backend thapelo-backend
+        balance roundrobin
+        server 273454-web-01 18.206.206.85:80 check
+        server 273454-web-02 18.210.16.108:80 check
 
-backend letsencrypt-backend
-    server letsencrypt 127.0.0.1:54321
+listen stats
+        bind *:8080
+        stats enable
+        stats uri /
+        stats refresh 5s
+        stats realm Haproxy\ Statistics
+        stats auth tmmoumakoe:P@55w0rd
