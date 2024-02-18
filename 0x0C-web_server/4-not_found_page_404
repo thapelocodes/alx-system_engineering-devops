@@ -16,7 +16,7 @@ sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default #add at li
 
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
 sudo sed -i "s@$PATTERN@$ADD404_NOTFOUND@" /etc/nginx/sites-available/default #uncomment and replace
-sed -i "76i \ \terror_page 404 /custom_404.html;\n\\tlocation = /custom_404.html {\n\t\t root /usr/share/nginx/
+sudo sed -i "76i \ \terror_page 404 /custom_404.html;\n\\tlocation = /custom_404.html {\n\t\t root /usr/share/nginx/
 html;\n\t\tinternal;\n\t}" /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
