@@ -15,6 +15,6 @@ echo "Hello World!" | sudo tee /usr/share/nginx/html/index.html
 sudo sed -i "30i $ADD301_REDIRECT" /etc/nginx/sites-available/default #add at line 30
 
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
-sudo sed -i "s@$PATTERN@$ADD404_NOTFOUND@" /etc/nginx/sites-available/default #uncomment and replace
+sudo sed -i "76i $ADD404_NOTFOUND" /etc/nginx/sites-enabled/default #uncomment and replace
 
 sudo service nginx restart
