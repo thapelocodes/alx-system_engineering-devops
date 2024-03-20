@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Gracefully reloads Gunicorn.
+
+pgrep gunicon | xargs kill -HUP
